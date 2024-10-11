@@ -1,4 +1,3 @@
-import React from 'react';
 import "./landingpage.css"
 import { FaRegCirclePlay } from 'react-icons/fa6';
 const LandingPage = () => {
@@ -132,7 +131,7 @@ const LandingPage = () => {
                             </div>
 
                             <div className=''>
-                                <picture class="sc-keVrkP gVjqbK"><img id="image-ddb66fc9" src="https://d1yei2z3i6k35z.cloudfront.net/2278740/66d5e563d0329_img5.webp" width="450" loading="lazy" class="sc-dvCyap kYfSQX" /></picture>
+                                <picture className="sc-keVrkP gVjqbK"><img id="image-ddb66fc9" src="https://d1yei2z3i6k35z.cloudfront.net/2278740/66d5e563d0329_img5.webp" width="450" loading="lazy" class="sc-dvCyap kYfSQX" /></picture>
                             </div>
                         </div>
 
