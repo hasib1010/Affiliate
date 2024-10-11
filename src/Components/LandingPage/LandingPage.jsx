@@ -1,9 +1,18 @@
+import React, { useState } from 'react';
 import "./landingpage.css"
 import { FaRegCirclePlay } from 'react-icons/fa6';
+import { ModalComponent } from './ModalComponent';
 const LandingPage = () => {
+    const [openModal, setOpenModals] = useState(false)
+    const handleModal = () => {
+        setOpenModals(true);
+    }
     return (
         <div  >
-            <div className=" ">
+            {
+                openModal && <ModalComponent setOpenModals={setOpenModals}></ModalComponent>
+            }
+            <div className=" mb-20">
                 <div className="flex  flex-col ">
 
                     <div className="flex justify-between w-full items-center px-10 border-b-2 mb-3">
@@ -43,22 +52,20 @@ const LandingPage = () => {
                 </div>
 
                 <div className="mb-4">
-                    <section className="w-full  container mx-auto">
+                    <section className="w-full  mx-auto">
                         <div className="flex flex-col items-center">
                             <div className="mb-4">
                                 <div className="flex flex-col items-center">
-                                    <button className="btn my-10 rounded-full py-1 px-10 ">
+                                    <button onClick={handleModal} className="btn my-10 rounded-full py-1 px-10 ">
                                         Slim Down Naturally
                                     </button>
                                 </div>
-                                <div className="text-center mb-4">
+                                <div className="text-center mx-32 mb-4">
                                     <div
                                         style={{ fontSize: '60px', fontFamily: 'Fira Sans Condensed', fontWeight: 600 }}
                                     >
                                         <p>
-                                            <span className="text-black"> " This </span>
-                                            <span className="text-blue-600">Weird ‘Blue Tonic’</span>
-                                            <span className="text-black"> Makes Slimming Down Fast, Almost Effortless, And EASIER Than Ever... "</span>
+                                            <span className="text-black"> " This </span><span className="text-blue-600">Weird ‘Blue Tonic’</span><span className="text-black"> Makes Slimming Down Fast, Almost Effortless, And EASIER Than Ever... "</span>
                                         </p>
                                     </div>
                                 </div>
@@ -79,11 +86,11 @@ const LandingPage = () => {
                                 <div className="mb-4">
                                     <div className="flex justify-center">
                                         <img
-
+                                            onClick={handleModal}
                                             src="https://d1yei2z3i6k35z.cloudfront.net/2278740/66d5e429d12cf_image14.webp"
                                             width="1000"
                                             loading="lazy"
-                                            className="object-contain border-t-8 border-blue-500"
+                                            className="object-contain cursor-pointer border-t-8 border-blue-500"
                                         />
                                     </div>
                                 </div>
@@ -91,7 +98,7 @@ const LandingPage = () => {
                         </div>
                         <div className="mb-4">
                             <div className="flex justify-center">
-                                <button id='button-f16412bc' className=" font-bold items-center justify-center rounded-full text-4xl uppercase py-10  text-white gap-2   my-10 px-4 flex  w-2/3 ">
+                                <button onClick={handleModal} id='button-f16412bc' className=" font-bold items-center justify-center rounded-full text-4xl uppercase py-10  text-white gap-2   my-10 flex  w-fit px-72">
                                     CLICK HERE TO WATCH THE VIDEO <FaRegCirclePlay />
                                 </button>
                             </div>
@@ -99,8 +106,8 @@ const LandingPage = () => {
 
 
 
-                        <div className="mb-4 flex gap-20">
-                            <div className='flex-1'>
+                        <div className="mb-4  grid grid-cols-12 mx-20">
+                            <div className='  col-span-6'>
                                 <div className="flex  ">
                                     <hr className="border-t border-gray-400 mb-4 w-full" />
                                 </div>
@@ -112,7 +119,7 @@ const LandingPage = () => {
                                         <p>Learn About the <span className="text-blue-600">Overlooked Diet Mistakes</span> Holding You Back! This has stunned doctors.</p>
                                     </div>
                                 </div>
-                                <div className="text-center mb-4">
+                                <div className="text-left mb-4">
                                     <div
                                         id="text-be2ecb63"
                                         style={{ fontSize: '18px', fontFamily: 'Fira Sans', fontWeight: 400 }}
@@ -124,14 +131,14 @@ const LandingPage = () => {
                                     </div>
                                 </div>
                                 <div className="flex justify-center">
-                                    <button id="button-3cb1eca4" className="bg-blue-600 text-white py-2 px-4 rounded">
+                                    <button onClick={handleModal} className=" btn text-white  w-full py-5 text-5xl font-medium rounded-l-none">
                                         WATCH THE VIDEO NOW<i className="far fa-play-circle ml-2" />
                                     </button>
                                 </div>
                             </div>
 
-                            <div className=''>
-                                <picture className="sc-keVrkP gVjqbK"><img id="image-ddb66fc9" src="https://d1yei2z3i6k35z.cloudfront.net/2278740/66d5e563d0329_img5.webp" width="450" loading="lazy" class="sc-dvCyap kYfSQX" /></picture>
+                            <div className='   col-span-6  flex items-center justify-center'>
+                                <picture  ><img  onClick={handleModal} className="cursor-pointer" src="https://d1yei2z3i6k35z.cloudfront.net/2278740/66d5e563d0329_img5.webp" width="450" loading="lazy" /></picture>
                             </div>
                         </div>
 
@@ -140,7 +147,8 @@ const LandingPage = () => {
                     </section>
                 </div>
             </div>
-        </div>
+
+        </div >
 
     );
 }
