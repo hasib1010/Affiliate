@@ -13,42 +13,7 @@ const LandingPage = () => {
                 openModal && <ModalComponent setOpenModals={setOpenModals}></ModalComponent>
             }
             <div className=" mb-20">
-                <div className="flex  flex-col  ">
-
-                    <div className="flex justify-between flex-col lg:flex-row  w-full items-center px-10 py-3 border-b-2 pb-3">
-                        <div className="mb-4">
-                            <div className="flex justify-center">
-                                <img
-                                    id="image-d7a0e190"
-                                    src="https://d1yei2z3i6k35z.cloudfront.net/2278740/66d5e3c2c1e28_logo1.webp"
-                                    width="200"
-                                    loading="lazy"
-                                    className="object-contain"
-                                />
-                            </div>
-                        </div>
-                        <div className="text-center">
-                            <div
-                                id="text-f45d2a2c"
-
-                            >
-                                <p>
-                                    <span className="text-black text-base ">Before You Go to Sleep Tonight, </span><span className="text-black font-bold">Try It for Yourself...</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div className="text-center">
-                            <div
-                                id="text-9f57e773"
-                                style={{ fontSize: '15px', fontFamily: 'Arial, Helvetica, sans-serif', color: 'rgba(0, 0, 0, 1)' }}
-                            >
-                                <p>
-                                    <span className="text-gray-800">ADVERTORIAL</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
 
                 <div className="mb-4">
                     <section className="w-full  mx-auto">

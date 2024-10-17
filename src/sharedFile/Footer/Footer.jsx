@@ -4,7 +4,7 @@ const Footer = () => {
         <div>
 
             <div className="">
-                <div className="bg-black lg:mx-[70px] text-white px-[10px] pt-[45px] pb-[20px] mb-10 text-[14px] ">
+                <div className="bg-black lg:mx-[70px] text-white px-[10px] pt-[45px] pb-[20px]   text-[14px] ">
 
                     <div className="flex justify-center" >
                         <img id="image-d8c8407e" src="https://d1yei2z3i6k35z.cloudfront.net/2278740/66d5e3d32cc90_logo.webp" width="375" loading="lazy" />
