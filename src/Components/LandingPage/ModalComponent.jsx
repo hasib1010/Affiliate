@@ -1,6 +1,7 @@
 import { Modal } from "flowbite-react";
 import { useState, useEffect } from "react";
 import { FaRegCirclePlay } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 export function ModalComponent({ setOpenModals }) {
     const [name, setName] = useState('');
@@ -81,6 +82,7 @@ export function ModalComponent({ setOpenModals }) {
             }
 
             console.log('Data submitted:', { name, email, date, country });
+            window.location.href = 'https://sumatratonic.com/getstarted/?hopId=742fe240-1c08-4008-a0c8-b453d8a48109&';
             onCloseModal();
         } catch (error) {
             console.error('Fetch error:', error);
