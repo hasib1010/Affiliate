@@ -5,110 +5,73 @@ import Navbar from './Components/Shared/Nabbar/Navbar';
 import ReactGA from 'react-ga4';
 import React, { useEffect, useState } from 'react';
 
-// Custom hook for session tracking
-const useFirstVisit = () => {
-  const [isFirstVisit, setIsFirstVisit] = useState(true);
+function App() {
+  const location = useLocation();
+  const [gaInitialized, setGaInitialized] = useState(false);
 
+  // Debug initialization
   useEffect(() => {
-    const visited = localStorage.getItem('hasVisited');
-    if (!visited) {
-      localStorage.setItem('hasVisited', 'true');
-      setIsFirstVisit(true);
-    } else {
-      setIsFirstVisit(false);
+    try {
+      console.log('Initializing GA4...');
+      ReactGA.initialize('G-P35GSSRE75');
+      setGaInitialized(true);
+      console.log('GA4 initialized successfully');
+      
+      // Send test event on initialization
+      ReactGA.event('app_initialized', {
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error('GA4 initialization failed:', error);
     }
   }, []);
 
-  return isFirstVisit;
-};
-
-function App() {
-  const location = useLocation();
-  const isFirstVisit = useFirstVisit();
-
+  // Debug page views
   useEffect(() => {
-    // Initialize GA4
-    ReactGA.initialize('G-P35GSSRE75');
-    
-    // Track new user
-    if (isFirstVisit) {
-      ReactGA.event('first_visit', {
-        new_user: true,
-        timestamp: new Date().toISOString()
+    if (!gaInitialized) return;
+
+    try {
+      console.log('Sending pageview for:', location.pathname);
+      ReactGA.send({
+        hitType: "pageview",
+        page: location.pathname + location.search
       });
+      console.log('Pageview sent successfully');
+    } catch (error) {
+      console.error('Failed to send pageview:', error);
     }
-  }, [isFirstVisit]);
+  }, [location, gaInitialized]);
 
-  useEffect(() => {
-    // Track page views
-    ReactGA.send({
-      hitType: "pageview",
-      page: location.pathname + location.search
-    });
-
-    // Track navigation events
-    ReactGA.event('page_view', {
-      page_title: document.title,
-      page_location: window.location.href,
-      page_path: location.pathname
-    });
-  }, [location]);
-
-  // Custom event tracking function
-  const trackEvent = (eventName, category, label, value) => {
-    ReactGA.event(eventName, {
-      event_category: category,
-      event_label: label,
-      value: value
-    });
-  };
-
-  // Example tracking user engagement time
-  useEffect(() => {
-    let startTime = Date.now();
-
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        const timeSpent = (Date.now() - startTime) / 1000; // Convert to seconds
-        ReactGA.event('user_engagement', {
-          time_spent: timeSpent,
-          page_path: location.pathname
+  // Debug component for testing events
+  const TestAnalytics = () => {
+    const sendTestEvent = () => {
+      try {
+        console.log('Sending test event...');
+        ReactGA.event('button_click', {
+          category: 'Test',
+          action: 'Click',
+          label: `Test at ${new Date().toISOString()}`
         });
-      } else {
-        startTime = Date.now();
+        alert('Test event sent! Check console and GA4 Real-Time dashboard.');
+      } catch (error) {
+        console.error('Failed to send test event:', error);
+        alert('Failed to send test event. Check console for details.');
       }
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, [location]);
-
-  // Track scroll depth
-  useEffect(() => {
-    let maxScroll = 0;
-    const handleScroll = () => {
-      const scrollPercent = Math.round(
-        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-      );
-      
-      if (scrollPercent > maxScroll && scrollPercent % 25 === 0) { // Track at 25%, 50%, 75%, 100%
-        maxScroll = scrollPercent;
-        ReactGA.event('scroll_depth', {
-          percent: scrollPercent,
-          page_path: location.pathname
-        });
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [location]);
-
-  // Example of how to track button clicks
-  const handleButtonClick = () => {
-    trackEvent('button_click', 'user_interaction', 'specific_button', 1);
+    return (
+      <div className="p-4 m-4 border rounded">
+        <h2 className="mb-4">GA4 Debug Panel</h2>
+        <div className="mb-2">GA Initialized: {gaInitialized ? '✅' : '❌'}</div>
+        <div className="mb-2">Current Path: {location.pathname}</div>
+        <button 
+          onClick={sendTestEvent}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Send Test Event
+        </button>
+      </div>
+    );
   };
 
   return (
@@ -117,8 +80,9 @@ function App() {
         <div className='border-b-2 shadow-sm'>
           <Navbar />
         </div>
+        <TestAnalytics /> {/* Add debug panel */}
         <div className='lg:mx-[70px]'>
-          <Outlet context={{ trackEvent }} /> {/* Pass tracking function to child components */}
+          <Outlet />
         </div>
       </div>
       <Footer />
