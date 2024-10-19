@@ -82,7 +82,7 @@ export function ModalComponent({ setOpenModals }) {
             }
 
             console.log('Data submitted:', { name, email, date, country });
-            window.location.href = 'https://sumatratonic.com/getstarted/?hopId=742fe240-1c08-4008-a0c8-b453d8a48109&';
+            window.location.href = 'https://sumatratonic.com/welcome/';
             onCloseModal();
         } catch (error) {
             console.error('Fetch error:', error);

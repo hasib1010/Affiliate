@@ -81,6 +81,23 @@ const Story = () => {
                 <blockquote className='border-l-4 border-teal-600 pl-4 italic text-lg text-gray-700'>
                     "I finally found a solution that works with my body. The support from The Wellness Dawn community has been incredible!" – Mike T.
                 </blockquote>
+
+                <div className="flex justify-center my-10">
+                    <div className="relative group">
+                        {/* Gradient border container */}
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-xy"></div>
+
+                        {/* Button */}
+                        <button className="relative px-8  py-4 bg-teal-400 rounded-lg leading-none flex items-center">
+                            <a
+                                href="https://sumatratonic.com/getstarted/?hopId=742fe240-1c08-4008-a0c8-b453d8a48109&"
+                                className="text-white font-bold transform transition-all duration-300 hover:scale-105 active:scale-95"
+                            >
+                                ✨ Unlock Magic Now ✨
+                            </a>
+                        </button>
+                    </div>
+                </div>
             </section>
         </div>
     );

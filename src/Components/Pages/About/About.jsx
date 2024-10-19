@@ -29,7 +29,7 @@ const About = () => {
                     </p>
                 </div>
             </section>
-
+            
             {/* Mission Section */}
             <section className='mb-12'>
                 <h2 className='text-3xl font-semibold text-teal-600 mb-4'>Our Mission</h2>
