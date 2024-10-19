@@ -3,28 +3,24 @@ import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Footer from './sharedFile/Footer/Footer';
 import Navbar from './Components/Shared/Nabbar/Navbar';
-import ReactGA from 'react-ga'; // or import from @react-ga4 for GA4
+import { init, logEvent } from '@react-ga4'; // Import from @react-ga4
 import React, { useEffect } from 'react';
 
 function App() {
   const location = useLocation();
 
   useEffect(() => {
-    ReactGA.initialize('G-P35GSSRE75');
-    ReactGA.pageview(location.pathname + location.search); 
-  }, []); // Only run on mount
+    init('G-P35GSSRE75'); // Replace with your Measurement ID
+    logEvent('page_view', { page_path: location.pathname + location.search }); // Track initial page view
+  }, []); // Run only on mount
 
   useEffect(() => {
-    ReactGA.pageview(location.pathname + location.search); 
+    logEvent('page_view', { page_path: location.pathname + location.search }); // Track page view on location change
   }, [location]);
 
   // Example event tracking function
   const handleButtonClick = () => {
-    ReactGA.event({
-      category: 'User',
-      action: 'Clicked Button',
-      label: 'Example Button', // Optional label
-    });
+    logEvent('button_click', { label: 'Example Button' }); // Track button click event
   };
 
   return (
@@ -35,7 +31,7 @@ function App() {
         </div>
         <div className='lg:mx-[70px]'>
           <Outlet />
-          <button onClick={handleButtonClick}>Click Me</button> 
+          <button onClick={handleButtonClick}>Click Me</button> {/* Example button for event tracking */}
         </div>
       </div>
       <Footer />
